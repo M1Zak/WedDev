@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body style="font-family: Arial">
+		<p class="foo">This is Paragraph 1</p>
+		<p class="foo">This is Paragraph 2</p>
+		<p id="bar">This is Paragraph 3</p>
+
+		<input id='test'>
+		<button onclick="displayValue();">Click Me</button>
+		<button id="foobar">No, Click Me</button>
+
+		<script
+  				src="https://code.jquery.com/jquery-3.1.1.min.js"
+  					integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  																	crossorigin="anonymous"></script>
+  		<script>
+  			/* GetElementsByTag Comparison
+  			//Vanilla JavaScript
+  			var paragraph = document.getElementsByTagName("p");
+  			console.log(paragraph);
+
+  			//JQuery
+  			var jQueryPar = $("p");
+  			console.log(jQueryPar); */
+
+  			/*GetElementsByClassName Comparison
+  			//Vanilla JavaScript
+  			var paragraph = document.getElementsByClassName("foo");
+  			console.log(paragraph);
+
+  			//JQuery
+  			var jQueryPar = $(".foo");
+  			console.log(jQueryPar);
+
+  			Why not try out GetElementById Comparison?*/
+
+  			//Vanilla JavaScript
+  			/*var paragraph = document.getElementsByTagName("p");
+  			for(var i =0; i < paragraph.length; i++)
+  			{
+  				document.write(paragraph[i].innerHTML = "Edited by Vanilla JS");
+  			} */
+
+  			//JQuery
+  			/*var jQueryPar = $("p");
+  			jQueryPar.html("This has been edited by jQuery");
+		============================ CSS Sample =======================================
+  			var jQueryStyle = $("#bar");
+  			jQueryStyle.css({"background-color":"red"});
+  			*/
+  			/*
+			var jqueryValue = $('#test'); 
+			function displayValue(){
+				alert(jqueryValue.val());
+			}*/
+
+			//========================= Event Handling =================================
+			document.getElementById("foobar").onclick = myFooFunc;
+
+			function myFooFunc(){
+				alert("Someone Clicked Something");
+			}
+
+			document.getElementById("foobar").addEventListener("click", myBarFunc);
+			function myBarFunc(){
+				alert("Event Triggered by JS");
+			}
+
+			$(document).ready(function(){
+				$('.foo').on('click', mouseEvent);
+
+				function mouseEvent()
+				{
+					alert("Finished!");
+				}
+			});
+
+  		</script>
+
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lesson 6 - AJAX and Events</title>
+	<link rel="stylesheet" href="css/cerulean.min.css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>Widgets</h1>
+		</header>
+		<!--This is the navigation bar built with bootstrap classes and styling-->
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" id="index" href="index.html">Lesson Four</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a id="twitter" href="twitter.html">Twitter</a></li>
+						<li><a id="soundcloud" href="soundcloud.html">Soundcloud</a></li>
+						<li><a id="youtube" href="youtube.html">YouTube</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div id="main" class="container">
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			$("#main").load("index.html #core", completeFunction);
+			//Incarnation 1:
+			/*
+			$("#index").on("click", function(e){
+				$("#main").load("index.html #core", completeFunction);
+			});
+
+			$("#twitter").on("click", function(e){
+				$("#main").load("twitter.html #core", completeFunction);
+			});
+
+			$("#soundcloud").on("click", function(e){
+				$("#main").load("soundcloud.html #core", completeFunction);
+			});
+
+			$("#youtube").on("click", function(e){
+				$("#main").load("youtube.html #core", completeFunction);
+			});
+			*/
+
+			//Incarnation 2:
+			/*$("a").on("click", function(event){
+				event.preventDefault();
+				$("#main").load($(this).attr("href")+" #core", completeFunction);
+			});*/
+
+			//Incarnation 3:
+			$("a").on("click", function(event){
+				event.preventDefault();
+				var $target = $(this);
+				
+				$("#main").fadeOut(400, function(){doAJAX($target)});
+				$("#main").fadeIn(400);
+
+				//$("a").removeClass("active");
+				//$($target).addClass("active");
+			});
+
+			function doAJAX($element){
+				$("#main").load($element.attr("href")+"#core", completeFunction);
+			}
+
+			function completeFunction(responseText, textStatus, request){
+				if(textStatus == "error"){
+					$("#main").text("An error occurred during your request: "+ request.status+" "+request.statusText);
+				}
+			}
+		});		
+	</script>
+</body>
+</html>

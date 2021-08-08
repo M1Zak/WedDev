@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lesson 6 - AJAX and Events</title>
+	<link rel="stylesheet" href="css/cerulean.min.css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>Widgets</h1>
+		</header>
+		<!--This is the navigation bar built with bootstrap classes and styling-->
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Lesson Four</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="twitter.html">Twitter</a>
+						</li>
+						<li><a href="soundcloud.html">Soundcloud</a>
+						</li>
+						<li><a href="youtube.html">YouTube</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div id="core" class="jumbotron">
+			<h1>Welcome to Lesson Four!</h1>
+			<p>In this lesson we're going to talk about widgets!</p><hr>
+			
+			<!--Don't forget that the following video element requires a bunny.mp4 file to be saved in the same location as this file-->
+			<video id="myVideo" width="800" controls>
+				<source src="bunny.mp4" type="video/mp4" >
+				<!--The following line (the written innerHTML) only appears if the video fails to load-->
+				Your browser does not support the video tag.
+			</video>
+			<div style="display:block">
+				<button class="btn btn-primary" onclick="PLAY()">Play</button>
+				<button class="btn btn-primary" onclick="PAUSE()">Pause</button>
+				<button class="btn btn-primary" onclick="FFW()">Fast Foward</button>
+				<button class="btn btn-primary" onclick="REW()">Rewind</button>
+				<!--I have added some more buttons to affect the video variable as well-->
+				<button class="btn btn-primary" onclick="RES()">Restart</button>
+				<button class="btn btn-primary" onclick="LOOP()">Loop</button>
+				<button class="btn btn-primary" onclick="STOPLOOP()">Stop Loop</button>
+			</div>
+			<script>			
+				var video = document.getElementById('myVideo');
+				
+				function PLAY(){
+					video.play();
+				}
+				function PAUSE(){
+					video.pause();
+				}
+				function FFW(){
+					video.currentTime += 2;
+				}
+				function REW(){
+					video.currentTime -= 2;
+				}
+				function RES(){
+					video.currentTime = 0;
+					video.play();
+				}
+				function LOOP(){
+					video.loop = true;
+				}
+				function STOPLOOP(){
+					video.loop = false;
+				}
+			</script>
+		</div>
+	</div>
+</body>
+</html>	

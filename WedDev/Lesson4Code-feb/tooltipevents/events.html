@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Introduction to Events</title>
+	<link rel="stylesheet" href="events.css">
+</head>
+<body>
+<div class="data">
+	<p class="info">This is a paragraph</p>
+	<p class="tooltip">Tooltip: Additional information about paragraph 1</p>
+</div>
+<div class="data">
+	<p class="info">This is a paragraph</p>
+	<p class="tooltip">Tooltip: Additional information about paragraph 2</p>
+</div>
+<div>
+	<p class="info">This is a paragraph</p>
+	<p class="tooltip">Tooltip: Additional information about paragraph 3</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		tooltips("info", "tooltip");
+
+		function tooltips(dataClass, tooltipClass){
+			dataClass = "."+dataClass;
+			tooltipClass = "."+tooltipClass;
+			$(dataClass).on("click", clickEvent)
+			.on("mouseenter", mouseEnterEvent)
+			.on("mousemove", mouseMoveEvent)
+			.on("mouseout", mouseOutEvent);
+
+			function clickEvent(){
+				alert("A paragraph was clicked");
+			}
+
+			function mouseEnterEvent(event){
+				//$(this).css({"background-color":"blue", "color":"red"});
+				$(this).parent().find(tooltipClass).css({visibility:"visible"});
+			}
+
+			function mouseMoveEvent(event){
+				$(this).parent().find(tooltipClass).css({left:event.pageX, top:event.pageY});
+			}
+
+			function mouseOutEvent(event){
+				//$(this).css({"background-color":"white", "color":"black"});
+
+				$(this).parent().find(tooltipClass).css({visibility:"hidden"});
+			}
+		}
+		//Uses JQuery and not AJAX. Which is why XAMPP is not required
+	});
+
+</script>
+</body>
+</html>
